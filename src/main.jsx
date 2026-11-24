@@ -1,82 +1,40 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowDown, ArrowUpRight, Check, Code2, LayoutDashboard, MapPin, Menu, Smartphone, Sparkles, X } from 'lucide-react';
+import {
+  ArrowDown, ArrowUpRight, Code2, LayoutDashboard, MapPin, Menu,
+  Smartphone, Sparkles, X,
+} from 'lucide-react';
 import './styles.css';
+import './sectors.css';
+import './map.css';
+import BackendSection from './BackendSection.jsx';
 
 const services = [
-  {
-    number: '01',
-    title: 'Applications web',
-    text: 'Des expériences web claires et performantes, conçues pour vos clients comme pour vos équipes.',
-    Icon: LayoutDashboard,
-  },
-  {
-    number: '02',
-    title: 'Solutions mobiles',
-    text: 'Vos services à portée de main, avec des parcours simples et une attention portée à chaque écran.',
-    Icon: Smartphone,
-  },
-  {
-    number: '03',
-    title: 'Outils sur mesure',
-    text: 'Des outils adaptés à votre activité pour simplifier le quotidien et faire grandir vos idées.',
-    Icon: Sparkles,
-  },
+  { number: '01', title: 'Applications web', text: 'Des expériences web claires et performantes, conçues pour vos clients comme pour vos équipes.', Icon: LayoutDashboard },
+  { number: '02', title: 'Solutions mobiles', text: 'Vos services à portée de main, avec des parcours simples et une attention portée à chaque écran.', Icon: Smartphone },
+  { number: '03', title: 'Outils sur mesure', text: 'Des outils adaptés à votre activité pour simplifier le quotidien et faire grandir vos idées.', Icon: Sparkles },
 ];
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
-
   return (
     <header className="topbar">
       <a className="brand" href="#accueil" aria-label="Diginova, accueil" onClick={closeMenu}>
         <img src="/logo-diginova.png" alt="Diginova Software Solutions" />
       </a>
-      <button
-        className="menu-toggle"
-        aria-expanded={menuOpen}
-        aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-        onClick={() => setMenuOpen((open) => !open)}
-      >
-        {menuOpen ? <X size={22} /> : <Menu size={22} />}
+      <button className="menu-toggle" aria-expanded={menuOpen} aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <X size={21} /> : <Menu size={21} />}
       </button>
       <nav className={`nav ${menuOpen ? 'open' : ''}`} aria-label="Navigation principale">
         <a href="#expertises" onClick={closeMenu}>Expertises</a>
+        <a href="#backend" onClick={closeMenu}>Backend</a>
+        <a href="#secteurs" onClick={closeMenu}>Secteurs</a>
         <a href="#apropos" onClick={closeMenu}>À propos</a>
         <a href="#contact" onClick={closeMenu}>Contact</a>
-        <a className="nav-cta" href="https://wa.me/21627590950" target="_blank" rel="noreferrer">
-          Parlons de votre projet <ArrowUpRight size={17} />
-        </a>
+        <a className="nav-cta" href="https://wa.me/21627590950" target="_blank" rel="noreferrer">Parlons de votre projet <ArrowUpRight size={16} /></a>
       </nav>
     </header>
-  );
-}
-
-function HeroArt() {
-  return (
-    <div className="hero-art" aria-label="Illustration abstraite évoquant la création numérique">
-      <div className="art-orbit orbit-one" />
-      <div className="art-orbit orbit-two" />
-      <div className="art-grid" />
-      <div className="art-label label-top">
-        <span className="label-icon">✳</span><span>Des idées<br /><b>en mouvement</b></span>
-      </div>
-      <div className="code-card">
-        <div className="card-top"><span /><span /><span /><small>DIGI / 01</small></div>
-        <div className="code-content">
-          <div className="code-glyph">D<span>✳</span></div>
-          <div className="code-lines"><i /><i /><i /><i /></div>
-        </div>
-        <div className="card-caption">Créer · Connecter · Évoluer</div>
-      </div>
-      <div className="art-label label-bottom">
-        <span className="spark">✦</span><span>Le prochain pas<br />commence <b>ici.</b></span>
-      </div>
-      <div className="floating-square square-a" />
-      <div className="floating-square square-b" />
-      <div className="floating-square square-c" />
-    </div>
   );
 }
 
@@ -84,52 +42,75 @@ function Hero() {
   return (
     <section className="hero" id="accueil">
       <div className="hero-copy">
-        <div className="eyebrow"><span className="status-dot" /> Studio logiciel · Gabès, Tunisie</div>
-        <h1>Vos idées méritent<br />un <span>bel avenir numérique.</span></h1>
-        <p className="hero-lead">Diginova accompagne les entreprises dans la création de solutions logicielles utiles, soignées et pensées pour durer.</p>
+        <div className="eyebrow"><span className="status-dot" /> Studio logiciel <span className="eyebrow-divider">/</span> Gabès, Tunisie</div>
+        <h1>Le numérique<br />à la hauteur de<br /><span>vos ambitions.</span></h1>
+        <p className="hero-lead">Diginova imagine des solutions logicielles utiles, soignées et pensées pour accompagner votre activité.</p>
         <div className="hero-actions">
-          <a className="button button-primary" href="#contact">Démarrer une conversation <ArrowUpRight size={17} /></a>
-          <a className="text-link" href="#expertises">Découvrir nos expertises <ArrowDown size={15} /></a>
+          <a className="button button-primary" href="#contact">Parlons de votre projet <ArrowUpRight size={16} /></a>
+          <a className="text-link" href="#expertises">Explorer nos expertises <ArrowDown size={14} /></a>
         </div>
-        <div className="hero-note"><span className="note-line" /><span>À vos côtés, de la première idée au prochain chapitre.</span></div>
+        <div className="hero-note"><span className="note-line" /> Des idées bien pensées. Des solutions qui avancent.</div>
       </div>
-      <HeroArt />
-      <div className="hero-index"><span>01</span><span className="index-rule" /><span>05</span></div>
+      <div className="hero-visual" aria-label="Diginova transforme les idées en solutions numériques">
+        <div className="visual-grid" />
+        <div className="visual-ring ring-outer" /><div className="visual-ring ring-inner" />
+        <div className="visual-orb"><span>D</span><i>✳</i></div>
+        <div className="visual-tag tag-web"><LayoutDashboard size={15} /><span>Solutions web</span></div>
+        <div className="visual-tag tag-mobile"><Smartphone size={15} /><span>Mobile &amp; sur mesure</span></div>
+        <div className="visual-caption"><span className="caption-index">D / 01</span><span>De l’idée à l’impact.</span><ArrowUpRight size={15} /></div>
+        <span className="visual-spark spark-one">✳</span><span className="visual-spark spark-two">✦</span>
+      </div>
+      <div className="hero-index"><span>01</span><i /><span>03</span></div>
     </section>
   );
 }
 
 function Ticker() {
-  return (
-    <section className="ticker" aria-label="Nos valeurs">
-      <div className="ticker-track">
-        {[0, 1].map((group) => (
-          <div className="ticker-group" key={group} aria-hidden={group === 1}>
-            <span>Technologie utile</span><i>✳</i><span>Idées ambitieuses</span><i>✳</i><span>Réalisations soignées</span><i>✳</i>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+  return <div className="ticker"><div className="ticker-track"><div className="ticker-group"><span>Technologie utile</span><i>✳</i><span>Idées ambitieuses</span><i>✳</i><span>Réalisations soignées</span><i>✳</i></div><div className="ticker-group" aria-hidden="true"><span>Technologie utile</span><i>✳</i><span>Idées ambitieuses</span><i>✳</i><span>Réalisations soignées</span><i>✳</i></div></div></div>;
 }
 
 function Expertises() {
   return (
     <section className="expertises section-wrap" id="expertises">
       <div className="section-heading">
-        <div><div className="eyebrow"><span className="eyebrow-number">01 /</span> Ce que nous faisons</div><h2>Le bon outil<br />change <em>tout.</em></h2></div>
-        <p>Chaque projet commence par une question simple : comment le numérique peut-il vous aider, concrètement ?</p>
+        <div><div className="eyebrow"><span className="eyebrow-number">01 /</span> Nos expertises</div><h2>Des outils utiles.<br /><em>Un vrai impact.</em></h2></div>
+        <p>Le numérique est plus efficace quand il répond à un besoin réel. Nous concevons des solutions adaptées à votre quotidien.</p>
       </div>
       <div className="service-grid">
         {services.map(({ number, title, text, Icon }) => (
           <article className="service-card" key={number}>
-            <span className="service-num">{number}</span>
-            <div className="service-icon"><Icon size={36} strokeWidth={1.5} /></div>
+            <div className="service-card-top"><span className="service-num">{number}</span><span className="service-arrow"><ArrowUpRight size={17} /></span></div>
+            <div className="service-icon"><Icon size={26} strokeWidth={1.6} /></div>
             <h3>{title}</h3><p>{text}</p>
-            <a href="#contact" aria-label={`Parler de ${title.toLowerCase()}`}><ArrowUpRight size={18} /></a>
           </article>
         ))}
       </div>
+    </section>
+  );
+}
+
+function Secteurs() {
+  return (
+    <section className="sectors section-wrap" id="secteurs">
+      <div className="section-heading">
+        <div><div className="eyebrow"><span className="eyebrow-number">02 /</span> Applications métier</div><h2>Des solutions pensées<br /><em>pour votre terrain.</em></h2></div>
+        <p>Nous développons des applications adaptées aux réalités de chaque profession, avec les outils et les fonctionnalités qui facilitent le travail au quotidien.</p>
+      </div>
+      <div className="sector-grid">
+        <article className="sector-card sector-medical">
+          <div className="sector-card-head"><span className="sector-icon">✳</span><span className="sector-index">01 — SANTÉ</span></div>
+          <h3>Pour les médecins</h3>
+          <p>Des applications métier pour organiser l’activité du cabinet, simplifier le suivi des rendez-vous et faciliter la gestion au quotidien.</p>
+          <a href="#contact">Imaginer une solution médicale <ArrowUpRight size={15} /></a>
+        </article>
+        <article className="sector-card sector-legal">
+          <div className="sector-card-head"><span className="sector-icon"><Code2 size={23} /></span><span className="sector-index">02 — JURIDIQUE</span></div>
+          <h3>Pour les avocats</h3>
+          <p>Des outils numériques pour structurer le suivi des dossiers, les échéances et les tâches liées à l’activité juridique.</p>
+          <a href="#contact">Imaginer une solution juridique <ArrowUpRight size={15} /></a>
+        </article>
+      </div>
+      <div className="sector-other"><span className="other-spark">✳</span><p><b>Votre secteur est différent ?</b><br />Nous concevons aussi des applications web et mobiles sur mesure pour d’autres métiers et domaines d’activité. Parlez-nous de votre besoin.</p><a href="#contact" aria-label="Parler de votre projet"><ArrowUpRight size={18} /></a></div>
     </section>
   );
 }
@@ -138,14 +119,14 @@ function About() {
   return (
     <section className="about" id="apropos">
       <div className="about-inner">
-        <div className="about-stamp">DIGI<br /><b>NOVA</b><span>SOFTWARE SOLUTIONS</span></div>
+        <div className="about-mark"><img src="/logo-diginova.png" alt="" /><span>La technologie doit rester humaine.</span></div>
         <div className="about-copy">
-          <div className="eyebrow eyebrow-light"><span className="eyebrow-number">02 /</span> Notre approche</div>
-          <h2>La technologie<br />doit <em>vous ressembler.</em></h2>
-          <p>Chez Diginova, nous croyons que les meilleures solutions naissent d’une bonne écoute. Nous prenons le temps de comprendre votre activité pour imaginer un numérique qui lui ressemble.</p>
+          <div className="eyebrow eyebrow-light"><span className="eyebrow-number">03 /</span> Notre approche</div>
+          <h2>On commence par<br />bien <em>vous écouter.</em></h2>
+          <p>Les meilleures solutions naissent d’une bonne compréhension de votre activité. Nous prenons le temps de saisir vos besoins pour imaginer un numérique qui vous ressemble.</p>
           <a href="#contact" className="light-link">Faisons connaissance <ArrowUpRight size={16} /></a>
         </div>
-        <div className="about-decoration">D<span>✳</span></div>
+        <div className="about-decoration" aria-hidden="true">D<span>✳</span></div>
       </div>
     </section>
   );
@@ -155,36 +136,47 @@ function Contact() {
   return (
     <section className="contact section-wrap" id="contact">
       <div className="contact-intro">
-        <div className="eyebrow"><span className="eyebrow-number">03 /</span> À votre écoute</div>
-        <h2>Une idée en tête ?<br /><em>On vous écoute.</em></h2>
-        <p>Un projet, une question ou simplement envie d’échanger ? Rabeb et l’équipe Diginova sont là pour en parler.</p>
-        <a className="button button-primary" href="https://wa.me/21627590950" target="_blank" rel="noreferrer">Écrire sur WhatsApp <ArrowUpRight size={17} /></a>
+        <div className="eyebrow"><span className="eyebrow-number">04 /</span> Contact</div>
+        <h2>Votre prochain<br />projet commence <em>ici.</em></h2>
+        <p>Un projet, une question ou simplement envie d’échanger ? Rabeb et l’équipe Diginova sont à votre écoute.</p>
+        <a className="button button-primary" href="https://wa.me/21627590950" target="_blank" rel="noreferrer">Écrire sur WhatsApp <ArrowUpRight size={16} /></a>
       </div>
       <div className="contact-details">
         <div className="contact-person"><div className="avatar">RD</div><div><b>Rabeb DABEGHI</b><span>CEO · Diginova</span></div></div>
-        <a className="contact-row" href="tel:+21627590950"><span className="contact-symbol"><Smartphone size={16} /></span><span><small>Téléphone & WhatsApp</small>+216 27 590 950</span><b><ArrowUpRight size={16} /></b></a>
+        <a className="contact-row" href="tel:+21627590950"><span className="contact-symbol"><Smartphone size={16} /></span><span><small>Téléphone &amp; WhatsApp</small>+216 27 590 950</span><b><ArrowUpRight size={16} /></b></a>
         <a className="contact-row" href="mailto:diginova2727@gmail.com"><span className="contact-symbol">✉</span><span><small>Courriel</small>diginova2727@gmail.com</span><b><ArrowUpRight size={16} /></b></a>
         <a className="contact-row" href="https://instagram.com/diginova_software_solutions" target="_blank" rel="noreferrer"><span className="contact-symbol">◎</span><span><small>Instagram</small>@diginova_software_solutions</span><b><ArrowUpRight size={16} /></b></a>
         <div className="contact-row address"><span className="contact-symbol"><MapPin size={16} /></span><span><small>Nous trouver</small>Rue Abou El Kacem Chebbi, Immeuble Yasmine,<br />1er étage, Chentech, 6011 Gabès, Tunisie</span></div>
-        <a className="flyer-link" href="/flyer-diginova.pdf" target="_blank" rel="noreferrer">Consulter notre flyer <ArrowUpRight size={15} /></a>
       </div>
     </section>
   );
 }
 
-function Footer() {
+function MapSection() {
+  const position = '33.8722638,10.1099075';
   return (
-    <footer>
-      <a className="footer-brand" href="#accueil"><img src="/logo-diginova.png" alt="Diginova" /></a>
-      <span>Des solutions logicielles, pensées pour vous.</span>
-      <span>© {new Date().getFullYear()} Diginova Software Solutions</span>
-      <a href="#accueil" className="back-top">Retour en haut ↑</a>
-    </footer>
+    <section className="location-map" aria-labelledby="map-title">
+      <div className="location-map-heading">
+        <div><div className="eyebrow"><span className="eyebrow-number">05 /</span> Nous trouver</div><h2 id="map-title">Diginova à <em>Gabès.</em></h2></div>
+        <a href={`https://www.google.com/maps/@${position},16z`} target="_blank" rel="noreferrer">Ouvrir dans Google Maps <ArrowUpRight size={15} /></a>
+      </div>
+      <iframe
+        title="Emplacement de Diginova dans Google Maps"
+        src={`https://maps.google.com/maps?q=${position}&z=16&output=embed`}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
+      />
+    </section>
   );
 }
 
+function Footer() {
+  return <footer><a className="footer-brand" href="#accueil"><img src="/logo-diginova.png" alt="Diginova" /></a><span>Des solutions logicielles, pensées pour vous.</span><span>© {new Date().getFullYear()} Diginova Software Solutions</span><a href="#accueil" className="back-top">Retour en haut ↑</a></footer>;
+}
+
 function App() {
-  return <><Header /><main><Hero /><Ticker /><Expertises /><About /><Contact /></main><Footer /></>;
+  return <><Header /><main><Hero /><Ticker /><Expertises /><BackendSection /><Secteurs /><About /><Contact /><MapSection /></main><Footer /></>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
