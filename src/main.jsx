@@ -21,7 +21,7 @@ function Header() {
   return (
     <header className="topbar">
       <a className="brand" href="#accueil" aria-label="Diginova, accueil" onClick={closeMenu}>
-        <img src="/logo-diginova.png" alt="Diginova Software Solutions" />
+        <img src="/logo-diginova-transparent.png" alt="Diginova Software Solutions" />
       </a>
       <button className="menu-toggle" aria-expanded={menuOpen} aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X size={21} /> : <Menu size={21} />}
@@ -119,7 +119,7 @@ function About() {
   return (
     <section className="about" id="apropos">
       <div className="about-inner">
-        <div className="about-mark"><img src="/logo-diginova.png" alt="" /><span>La technologie doit rester humaine.</span></div>
+        <div className="about-mark"><img src="/logo-diginova-transparent.png" alt="" /><span>La technologie doit rester humaine.</span></div>
         <div className="about-copy">
           <div className="eyebrow eyebrow-light"><span className="eyebrow-number">03 /</span> Notre approche</div>
           <h2>On commence par<br />bien <em>vous écouter.</em></h2>
@@ -172,7 +172,7 @@ function MapSection() {
 }
 
 function Footer() {
-  return <footer><a className="footer-brand" href="#accueil"><img src="/logo-diginova.png" alt="Diginova" /></a><span>Des solutions logicielles, pensées pour vous.</span><span>© {new Date().getFullYear()} Diginova Software Solutions</span><a href="#accueil" className="back-top">Retour en haut ↑</a></footer>;
+  return <footer><a className="footer-brand" href="#accueil"><img src="/logo-diginova-transparent.png" alt="Diginova" /></a><span>Des solutions logicielles, pensées pour vous.</span><span>© {new Date().getFullYear()} Diginova Software Solutions</span><a href="#accueil" className="back-top">Retour en haut ↑</a></footer>;
 }
 
 function App() {
