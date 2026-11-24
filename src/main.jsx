@@ -8,6 +8,7 @@ import './styles.css';
 import './sectors.css';
 import './map.css';
 import BackendSection from './BackendSection.jsx';
+import TeamSection from './TeamSection.jsx';
 
 const services = [
   { number: '01', title: 'Applications web', text: 'Des expériences web claires et performantes, conçues pour vos clients comme pour vos équipes.', Icon: LayoutDashboard },
@@ -30,6 +31,7 @@ function Header() {
         <a href="#expertises" onClick={closeMenu}>Expertises</a>
         <a href="#backend" onClick={closeMenu}>Backend</a>
         <a href="#secteurs" onClick={closeMenu}>Secteurs</a>
+        <a href="#equipe" onClick={closeMenu}>Équipe</a>
         <a href="#apropos" onClick={closeMenu}>À propos</a>
         <a href="#contact" onClick={closeMenu}>Contact</a>
         <a className="nav-cta" href="https://wa.me/21627590950" target="_blank" rel="noreferrer">Parlons de votre projet <ArrowUpRight size={16} /></a>
@@ -142,7 +144,11 @@ function Contact() {
         <a className="button button-primary" href="https://wa.me/21627590950" target="_blank" rel="noreferrer">Écrire sur WhatsApp <ArrowUpRight size={16} /></a>
       </div>
       <div className="contact-details">
-        <div className="contact-person"><div className="avatar">RD</div><div><b>Rabeb DABEGHI</b><span>CEO · Diginova</span></div></div>
+        <div className="contact-person">
+          <div className="avatar"><img src="/team-hanen.jpeg" alt="Portrait de Rabeb Dabeghi" /></div>
+          <div className="contact-person-info"><small>VOTRE INTERLOCUTRICE</small><b>Rabeb Dabeghi</b><span>Manager · Diginova</span></div>
+          <a className="contact-person-action" href="https://wa.me/21627590950" target="_blank" rel="noreferrer" aria-label="Contacter Rabeb sur WhatsApp"><ArrowUpRight size={18} /></a>
+        </div>
         <a className="contact-row" href="tel:+21627590950"><span className="contact-symbol"><Smartphone size={16} /></span><span><small>Téléphone &amp; WhatsApp</small>+216 27 590 950</span><b><ArrowUpRight size={16} /></b></a>
         <a className="contact-row" href="mailto:diginova2727@gmail.com"><span className="contact-symbol">✉</span><span><small>Courriel</small>diginova2727@gmail.com</span><b><ArrowUpRight size={16} /></b></a>
         <a className="contact-row" href="https://instagram.com/diginova_software_solutions" target="_blank" rel="noreferrer"><span className="contact-symbol">◎</span><span><small>Instagram</small>@diginova_software_solutions</span><b><ArrowUpRight size={16} /></b></a>
@@ -176,7 +182,7 @@ function Footer() {
 }
 
 function App() {
-  return <><Header /><main><Hero /><Ticker /><Expertises /><BackendSection /><Secteurs /><About /><Contact /><MapSection /></main><Footer /></>;
+  return <><Header /><main><Hero /><Ticker /><Expertises /><BackendSection /><Secteurs /><TeamSection /><About /><Contact /><MapSection /></main><Footer /></>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
