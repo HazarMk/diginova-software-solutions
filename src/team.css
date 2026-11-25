@@ -14,3 +14,4 @@
 .team-note>a{margin-left:auto;width:31px;height:31px;border:1px solid #ffffff38;border-radius:50%;display:grid;place-items:center;color:#8bcdf4;flex:none}
 @media(max-width:800px){.team{padding-top:12px}.team-grid{grid-template-columns:1fr 1fr;gap:11px}.team-photo{height:250px}.team-card:last-child{grid-column:1/-1}.team-card:last-child .team-photo{height:300px}}
 @media(max-width:500px){.team-grid{grid-template-columns:1fr}.team-card:last-child{grid-column:auto}.team-photo,.team-card:last-child .team-photo{height:320px}.team-photo img{object-position:center 30%}}
+.team-photo img[alt="Portrait de Hazar Mokaddem"]{filter:blur(.6px)}
