@@ -18,11 +18,12 @@ export default function TeamSection() {
       </div>
       <div className="team-grid">
         {team.map(({ name, role, image, alt, Icon }) => {
+          const displayName = name === 'Omar' ? 'Omar Jeday' : name;
           const title = name === 'Omar' ? 'M. ' : name === 'Rabeb Dabeghi' ? 'Mme ' : 'Mlle ';
           return (
           <article className="team-card" key={name}>
             <div className="team-photo"><img src={image} alt={alt} loading="lazy" /></div>
-            <div className="team-info"><div><h3>{title}{name}</h3><p>{role}</p></div><span className="team-role-icon"><Icon size={17} /></span></div>
+            <div className="team-info"><div><h3>{title}{displayName}</h3><p>{role}</p></div><span className="team-role-icon"><Icon size={17} /></span></div>
           </article>
           );
         })}
