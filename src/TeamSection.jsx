@@ -17,12 +17,15 @@ export default function TeamSection() {
         <p>Une équipe à taille humaine qui réunit développement, coordination et accompagnement commercial.</p>
       </div>
       <div className="team-grid">
-        {team.map(({ name, role, image, alt, Icon }) => (
+        {team.map(({ name, role, image, alt, Icon }) => {
+          const title = name === 'Omar' ? 'M. ' : name === 'Rabeb Dabeghi' ? 'Mme ' : 'Mlle ';
+          return (
           <article className="team-card" key={name}>
             <div className="team-photo"><img src={image} alt={alt} loading="lazy" /></div>
-            <div className="team-info"><div><h3>{name}</h3><p>{role}</p></div><span className="team-role-icon"><Icon size={17} /></span></div>
+            <div className="team-info"><div><h3>{title}{name}</h3><p>{role}</p></div><span className="team-role-icon"><Icon size={17} /></span></div>
           </article>
-        ))}
+          );
+        })}
       </div>
       <div className="team-note"><span>✳</span><p>Une idée à développer ? Notre équipe est là pour en parler avec vous.</p><a href="#contact" aria-label="Contacter Diginova"><ArrowUpRight size={18} /></a></div>
     </section>
